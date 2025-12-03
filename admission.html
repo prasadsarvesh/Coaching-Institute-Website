@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admission Form - {{ course.name }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold">Prasad Coaching Institute</h1>
+      <p class="text-sm">Secure your seat for {{ course.name }}</p>
+    </div>
+  </header>
+
+  <!-- Form Section -->
+  <main class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-6">Admission Form – {{ course.name }}</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="bg-{{ 'red' if category == 'error' else 'green' }}-100 border-l-4 border-{{ 'red' if category == 'error' else 'green' }}-500 text-{{ 'red' if category == 'error' else 'green' }}-700 px-4 py-3 rounded mb-6">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Admission Form -->
+    <form method="POST" class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+
+      <div>
+        <label for="student_name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="student_name" name="student_name" required class="mt-1 p-3 w-full border rounded-md">
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="email" required class="mt-1 p-3 w-full border rounded-md">
+      </div>
+
+      <div>
+        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required class="mt-1 p-3 w-full border rounded-md">
+      </div>
+
+      <div>
+        <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+        <input type="date" id="dob" name="dob" class="mt-1 p-3 w-full border rounded-md">
+      </div>
+
+      <div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+        <textarea id="address" name="address" rows="3" class="mt-1 p-3 w-full border rounded-md"></textarea>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition">
+        Proceed to Payment
+      </button>
+    </form>
+
+    <!-- Back Link -->
+    <a href="{{ url_for('course_details', course_id=course.id) }}"
+       class="inline-block mt-6 text-blue-600 hover:underline">
+      ← Back to Course Details
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Prasad Coaching Institute. All rights reserved.</p>
+      <p>Contact: info@prasadsarvesh25@gmail.com | +91-74888-26903</p>
+    </div>
+  </footer>
+
+</body>
+</html>
