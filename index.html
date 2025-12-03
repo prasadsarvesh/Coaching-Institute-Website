@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prasad Coaching Institute</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold">Prasad Coaching Institute</h1>
+      <p class="mt-2 font-semibold">
+        Welcome to Prasad Coaching Institute – Your Gateway to Academic Excellence!
+      </p>
+      <p class="text-sm">
+        Expert faculty, result-driven coaching, and complete guidance for your future success.At Prasad Coaching Institute, we are committed to shaping your future through expert faculty, result-driven coaching, and comprehensive guidance. Based in Kota, a hub for competitive exam preparation, we offer top-tier courses for JEE Main & Advanced, NEET, and Foundation programs (9th & 10th). Our proven teaching methodologies, personalized mentorship, and rigorous curriculum empower students to achieve their academic and career goals.
+
+Explore our courses, check available slots, and secure your admission seamlessly through our user-friendly online platform. With transparent fee structures and a streamlined admission process, we make it easy for you to take the first step toward success. Join us today and unlock your potential with Prasad Coaching Institute – where excellence meets opportunity!
+        
+      </p>
+    </div>
+  </header>
+
+  <!-- Courses Section -->
+  <main class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Available Courses</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for course in courses %}
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-blue-700">{{ course.name }}</h3>
+        <p class="mt-2 text-gray-600">{{ course.description }}</p>
+        <p class="mt-2 text-sm"><strong>Available Slots:</strong> {{ course.available_slots }} / {{ course.total_slots }}</p>
+        <p class="mt-2 text-sm"><strong>Fee:</strong> ₹{{ course.fee }}</p>
+        <a href="{{ url_for('course_details', course_id=course.id) }}"
+           class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+          View Details
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Prasad Coaching Institute. All rights reserved.</p>
+      <p>Contact: info@prasadaman25@gmail.com | +91-8987953409</p>
+    </div>
+  </footer>
+
+</body>
+</html>
