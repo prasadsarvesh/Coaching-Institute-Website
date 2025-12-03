@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admission Confirmation - {{ admission.student_name }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold">Prasad Coaching Institute</h1>
+      <p class="text-sm mt-1">Empowering Excellence Through Education</p>
+    </div>
+  </header>
+
+  <!-- Confirmation Details -->
+  <main class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-6 text-green-600">🎉 Admission Confirmed</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="bg-{{ 'red' if category == 'error' else 'green' }}-100 border-l-4 border-{{ 'red' if category == 'error' else 'green' }}-500 text-{{ 'red' if category == 'error' else 'green' }}-700 px-4 py-3 rounded mb-6">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Info Card -->
+    <div class="bg-white shadow-lg rounded-lg p-6 space-y-3">
+      <p><strong>Student Name:</strong> {{ admission.student_name }}</p>
+      <p><strong>Course Enrolled:</strong> {{ course.name }}</p>
+      <p><strong>Email:</strong> {{ admission.email }}</p>
+      <p><strong>Phone:</strong> {{ admission.phone }}</p>
+      <p><strong>Payment Status:</strong>
+        <span class="font-medium text-green-600">{{ admission.payment_status }}</span>
+      </p>
+      <p class="pt-4 text-gray-700">
+        ✅ Thank you for enrolling! A confirmation email has been sent with further details about your course.
+      </p>
+    </div>
+
+    <!-- Back Home Button -->
+    <a href="{{ url_for('home') }}"
+       class="mt-6 inline-block bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600 transition">
+      Back to Home
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Prasad Coaching Institute. All rights reserved.</p>
+      <p>Contact: info@prasadsarvesh25@gmail.com | +91-74888-26903</p>
+    </div>
+  </footer>
+
+</body>
+</html>
